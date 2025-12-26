@@ -20,7 +20,7 @@
  */
 
 #include <Arduino.h>
-#include "Ethernet.h"
+#include "EthernetAdv.h"
 
 EthernetServer::EthernetServer(EthernetClass &ethernet, uint16_t port){
 	_port = port;

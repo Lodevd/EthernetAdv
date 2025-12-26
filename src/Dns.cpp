@@ -3,7 +3,7 @@
 // Released under Apache License, version 2.0
 
 #include <Arduino.h>
-#include "Ethernet.h"
+#include "EthernetAdv.h"
 #include "Dns.h"
 
 #define SOCKET_NONE              255

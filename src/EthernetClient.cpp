@@ -20,7 +20,7 @@
  */
 
 #include <Arduino.h>
-#include "Ethernet.h"
+#include "EthernetAdv.h"
 #include "Dns.h"
 
 EthernetClient::EthernetClient(EthernetClass &ethernet){

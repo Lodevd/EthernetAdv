@@ -2,7 +2,7 @@
 // Author: Jordan Terrell - blog.jordanterrell.com
 
 #include <Arduino.h>
-#include "Ethernet.h"
+#include "EthernetAdv.h"
 #include "Dhcp.h"
 
 int DhcpClass::beginWithDHCP(uint8_t *mac, unsigned long timeout, unsigned long responseTimeout)

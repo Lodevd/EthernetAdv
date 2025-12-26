@@ -10,7 +10,7 @@
  */
 
 #include <Arduino.h>
-#include "Ethernet.h"
+#include "EthernetAdv.h"
 #include "W5x00.h"
 
 // Generic
