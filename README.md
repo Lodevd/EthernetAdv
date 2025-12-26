@@ -24,7 +24,7 @@ https://www.arduino.cc/en/Reference/Ethernet
 In the original library there are main communication principles between the library classes, and the classes with the Ethernet chip. 
 But there where not strictly implemented (annymore). During reworking I tried correcting the library to strictly match the diagram below. 
 
-![Class diagram](https://raw.githubusercontent.com/Lodevd/EthernetAdv/refs/heads/master/docs/EthernetLibrary.svg)
+![Class diagram](https://raw.githubusercontent.com/Lodevd/EthernetAdv/49af791d93788121f7d8cb3b3ab3cd5d2252a4d1/docs/EthernetLibrary.svg)
 
 ## Example usage ##
 
@@ -100,4 +100,5 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+
 
