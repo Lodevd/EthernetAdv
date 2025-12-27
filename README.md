@@ -51,7 +51,7 @@ EthernetClass Ethernet(chip);      // For compatibility with the original librar
 ```C++
 
 #include <SPI.h>
-#include <Ethernet.h>       
+#include <EthernetAdv.h>       
 
 // Ethernet interface settings
 byte mac[] = {  0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
@@ -100,5 +100,6 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+
 
 
