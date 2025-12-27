@@ -44,7 +44,7 @@ uint8_t W5500Class::init(void)
 	// until the reset pulse is ended.  If your hardware has a shorter
 	// reset time, this can be edited or removed.
 	delay(560);
-	Serial.println("w5500 init");
+	//Serial.println("w5500 init");
 
 	//SPI.begin();	This should be done outside of the class
 	initSS();
@@ -78,13 +78,13 @@ uint8_t W5500Class::init(void)
 	// that's heard other SPI communication if its chip select
 	// pin wasn't high when a SD card or other SPI chip was used.
 	} else {
-		Serial.println("no chip :-(");
+		//Serial.println("no chip :-(");
 		spi->endTransaction();
 		return 0; // no known chip is responding :-(
 	}
 	spi->endTransaction();
 	initialized = true;
-	Serial.println("w5500 Initialized");
+	//Serial.println("w5500 Initialized");
 	return 1; // successful init
 }
 

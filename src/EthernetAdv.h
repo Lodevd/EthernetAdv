@@ -44,6 +44,8 @@
 
 // Ethernet library
 #include "utility/W5x00.h"
+#include "utility/W5100.h"
+#include "utility/W5200.h"
 #include "utility/W5500.h"
 
 enum EthernetLinkStatus {
