@@ -2,8 +2,8 @@
 
 > **Note:** 
 > !!! This project is under construction, use at own risk !!!
-> For now only W5500 is supported and only tested with ESP32S3. Like in the example below. 
-> I'll try adding uno with W5100 in the near future.
+> For now only W5500 is tested with ESP32S3.
+> The examples below are the tested setups.
 
 This is a reworked version of the Arduino(c) Ethernet library.
 The Ethernet library makes Ethernet communication using WIZnet(c) Ethernet chips W5100, W5200 and W5500.
