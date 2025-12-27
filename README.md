@@ -26,24 +26,42 @@ But there where not strictly implemented (annymore). During reworking I tried co
 
 ![Class diagram](https://raw.githubusercontent.com/Lodevd/EthernetAdv/49af791d93788121f7d8cb3b3ab3cd5d2252a4d1/docs/EthernetLibrary.svg)
 
+
+## Compatibility with original library ##
+```C++
+
+// You can name your ethernet interface annyway you want.
+// But if you want compatibility with other arduino libraries that use the Ethernet
+// library then make sure your naming is correct. 
+
+W5100Class chip(SPI,10);          // Use the W5100Class, W5200Class or W5500Class depending on the chip you are using. 
+EthernetClass Ethernet(chip);     // For compatibility with the original library the name 'Ethernet' is important here. 
+
+```
+
 ## Example usage ##
 
 ### Uno, Mega with W5100 Shield ###
 ```C++
 
-TODO();
+#include <SPI.h>
+#include <EthernetAdv.h>
 
-```
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+IPAddress ip(192, 168, 10, 25);
 
-### Compatibility with original library ###
-```C++
+W5100Class w5100(SPI,10);
+EthernetClass Ethernet(w5100);
+EthernetClient client(Ethernet);
 
-// You can name your ethernet interface annyway you want.
-// But if you want compatibility with other libraries using 
-// the original Ethernet library you need to name it 'Ethernet' like this.
+void setup() {
 
-W5500Class chip(SPI,10);          // Use the W5100Class, W5200Class or W5500Class depending on the chip you are using. 
-EthernetClass Ethernet(chip);      // For compatibility with the original library the name ' Ethernet' is important here. 
+  // start the Ethernet connection:
+  SPI.begin();
+  Ethernet.begin(mac, ip);
+
+}
+
 
 ```
 
