@@ -2,7 +2,6 @@
 
 > **Note:** 
 > !!! This project is under construction, use at own risk !!!
-> For now only W5500 is tested with ESP32S3.
 > The examples below are the tested setups.
 
 This is a reworked version of the Arduino(c) Ethernet library.
