@@ -148,6 +148,8 @@ public:
 
   void execCmdSn(SOCKET s, SockCMD _cmd);
 
+  bool initialized() { return _initialized; }
+
   uint8_t write(uint16_t addr, uint8_t data) {
     return write(addr, &data, 1);
   }
@@ -166,7 +168,7 @@ protected:
   uint8_t ss_pin;
   uint8_t _maxSockNum;
   uint8_t CH_BASE_MSB; // 1 redundant byte, saves ~80 bytes code on AVR
-  bool initialized = false;
+  bool _initialized = false;
 
   uint8_t softReset(void);
   

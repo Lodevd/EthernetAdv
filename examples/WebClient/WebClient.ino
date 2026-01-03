@@ -11,11 +11,17 @@
  by David A. Mellis
  modified 9 Apr 2012
  by Tom Igoe, based on work by Adrian McEwen
+ Modified to use the EthernetAdv library 3 Jan 2026
+ by Lode Van Dyck
 
  */
 
 #include <SPI.h>
-#include <Ethernet.h>
+#include <EthernetAdv.h>
+
+#define W5100_CS_PIN 10
+W5100Class w5100(SPI,W5100_CS_PIN);         // Use the W5100Class, W5200Class or W5500Class depending on the chip you are using. 
+EthernetClass Ethernet(w5100);
 
 // Enter a MAC address for your controller below.
 // Newer Ethernet shields have a MAC address printed on a sticker on the shield
@@ -60,7 +66,7 @@ void setup() {
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
     // Check for Ethernet hardware present
-    if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+    if (!Ethernet.hardwareInitialized()) {
       Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
       while (true) {
         delay(1); // do nothing, no point running without Ethernet hardware

@@ -30,7 +30,7 @@ W5500Class::W5500Class(SPIClass &spi, uint8_t sspin){
 // Chip dependant
 uint8_t W5500Class::init(void)
 {
-	if (initialized) return 1;
+	if (_initialized) return 1;
 	
 	CH_BASE_MSB = 0x10;
 	uint8_t i;
@@ -83,7 +83,7 @@ uint8_t W5500Class::init(void)
 		return 0; // no known chip is responding :-(
 	}
 	spi->endTransaction();
-	initialized = true;
+	_initialized = true;
 	//Serial.println("w5500 Initialized");
 	return 1; // successful init
 }

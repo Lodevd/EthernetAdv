@@ -14,11 +14,17 @@
  by Tom Igoe
  modified 02 Sept 2015
  by Arturo Guadalupi
+ Modified to use the EthernetAdv library 3 Jan 2026
+ by Lode Van Dyck
  
  */
 
 #include <SPI.h>
-#include <Ethernet.h>
+#include <EthernetAdv.h>
+
+#define W5100_CS_PIN 10
+W5100Class w5100(SPI,W5100_CS_PIN);         // Use the W5100Class, W5200Class or W5500Class depending on the chip you are using. 
+EthernetClass Ethernet(w5100);
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
@@ -30,7 +36,7 @@ IPAddress ip(192, 168, 1, 177);
 // Initialize the Ethernet server library
 // with the IP address and port you want to use
 // (port 80 is default for HTTP):
-EthernetServer server(80);
+EthernetServer server(Ethernet, 80);
 
 void setup() {
   // You can use Ethernet.init(pin) to configure the CS pin
@@ -52,7 +58,7 @@ void setup() {
   Ethernet.begin(mac, ip);
 
   // Check for Ethernet hardware present
-  if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+  if (!Ethernet.hardwareInitialized()) {
     Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
     while (true) {
       delay(1); // do nothing, no point running without Ethernet hardware

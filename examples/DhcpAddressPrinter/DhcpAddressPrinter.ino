@@ -13,17 +13,22 @@
   by Tom Igoe
   modified 02 Sept 2015
   by Arturo Guadalupi
-
+  Modified to use the EthernetAdv library 3 Jan 2026
+  by Lode Van Dyck
  */
 
 #include <SPI.h>
-#include <Ethernet.h>
+#include <EthernetAdv.h>
 
 // Enter a MAC address for your controller below.
 // Newer Ethernet shields have a MAC address printed on a sticker on the shield
 byte mac[] = {
   0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
 };
+
+#define W5100_CS_PIN 10
+W5100Class w5100(SPI,W5100_CS_PIN);         // Use the W5100Class, W5200Class or W5500Class depending on the chip you are using. 
+EthernetClass Ethernet(w5100);
 
 void setup() {
   // You can use Ethernet.init(pin) to configure the CS pin
@@ -44,7 +49,7 @@ void setup() {
   Serial.println("Initialize Ethernet with DHCP:");
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
-    if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+    if (!Ethernet.hardwareInitialized()) {
       Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
     } else if (Ethernet.linkStatus() == LinkOFF) {
       Serial.println("Ethernet cable is not connected.");

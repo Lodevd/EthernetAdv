@@ -29,13 +29,6 @@
 // these "friend" classes are now defined in the same header file.  socket.h
 // was removed to avoid possible conflict with the C library header files.
 
-// By default, each socket uses 2K buffers inside the WIZnet chip.  If
-// MAX_SOCK_NUM is set to fewer than the chip's maximum, uncommenting
-// this will use larger buffers within the WIZnet chip.  Large buffers
-// can really help with UDP protocols like Artnet.  In theory larger
-// buffers should allow faster TCP over high-latency links, but this
-// does not always seem to work in practice (maybe WIZnet bugs?)
-
 // Arduino framework
 #include <Arduino.h>
 #include "Client.h"
@@ -102,6 +95,7 @@ public:
 
 	uint16_t SSIZE();
 	uint8_t maxSocketNum();
+	bool hardwareInitialized() { return _w5x00->initialized(); }
 
 	/*****************************************/
 	/*          Socket management            */
@@ -284,6 +278,7 @@ public:
 	EthernetClient available();
 	EthernetClient accept();
 	virtual void begin();
+	virtual void begin(uint16_t port);			//To fix esp32 bug
 	virtual size_t write(uint8_t);
 	virtual size_t write(const uint8_t *buf, size_t size);
 	virtual operator bool();

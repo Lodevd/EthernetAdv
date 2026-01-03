@@ -8,11 +8,18 @@
   Hardware:
    - Ethernet shield or equivalent board/shield with WIZnet W5200/W5500
   Written by Cristian Maglie
+  Modified to use the EthernetAdv library 3 Jan 2026
+  by Lode Van Dyck
+
   This example is public domain.
 */
 
 #include <SPI.h>
-#include <Ethernet.h>
+#include <EthernetAdv.h>
+
+#define W5100_CS_PIN 10
+W5100Class w5100(SPI,W5100_CS_PIN);         // Use the W5100Class, W5200Class or W5500Class depending on the chip you are using. 
+EthernetClass Ethernet(w5100);
 
 void setup() {
   // You can use Ethernet.init(pin) to configure the CS pin

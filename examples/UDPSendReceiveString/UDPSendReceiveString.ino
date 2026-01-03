@@ -9,13 +9,19 @@
 
  created 21 Aug 2010
  by Michael Margolis
+Modified to use the EthernetAdv library 3 Jan 2026
+ by Lode Van Dyck
 
  This code is in the public domain.
  */
 
 
-#include <Ethernet.h>
-#include <EthernetUdp.h>
+#include <EthernetAdv.h>
+//#include <EthernetUdp.h>
+
+#define W5100_CS_PIN 10
+W5100Class w5100(SPI,W5100_CS_PIN);         // Use the W5100Class, W5200Class or W5500Class depending on the chip you are using. 
+EthernetClass Ethernet(w5100);
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
@@ -52,7 +58,7 @@ void setup() {
   }
 
   // Check for Ethernet hardware present
-  if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+  if (!Ethernet.hardwareInitialized()) {
     Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
     while (true) {
       delay(1); // do nothing, no point running without Ethernet hardware

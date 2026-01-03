@@ -16,11 +16,12 @@
  by Tom Igoe
  redesigned to make use of operator== 25 Nov 2013
  by Norbert Truchsess
-
+ Modified to use the EthernetAdv library 3 Jan 2026
+ by Lode Van Dyck
  */
 
 #include <SPI.h>
-#include <Ethernet.h>
+#include <EthernetAdv.h>
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network.
@@ -33,11 +34,22 @@ IPAddress myDns(192, 168, 1, 1);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 0, 0);
 
-
+#define W5100_CS_PIN 10
+W5100Class w5100(SPI,W5100_CS_PIN);         // Use the W5100Class, W5200Class or W5500Class depending on the chip you are using. 
+EthernetClass Ethernet(w5100);
 // telnet defaults to port 23
-EthernetServer server(23);
+EthernetServer server(Ethernet,23);
 
-EthernetClient clients[8];
+EthernetClient clients[8] = {
+  EthernetClient(Ethernet),    //clients[0]
+  EthernetClient(Ethernet),    //clients[1]
+  EthernetClient(Ethernet),    //clients[2]
+  EthernetClient(Ethernet),    //clients[3]
+  EthernetClient(Ethernet),    //clients[4]
+  EthernetClient(Ethernet),    //clients[5]
+  EthernetClient(Ethernet),    //clients[6]
+  EthernetClient(Ethernet)     //clients[7]   
+};
 
 void setup() {
   // You can use Ethernet.init(pin) to configure the CS pin
@@ -58,7 +70,7 @@ void setup() {
   }
 
   // Check for Ethernet hardware present
-  if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+  if (!Ethernet.hardwareInitialized()) {
     Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
     while (true) {
       delay(1); // do nothing, no point running without Ethernet hardware

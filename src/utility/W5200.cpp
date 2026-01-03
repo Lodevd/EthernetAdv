@@ -29,7 +29,7 @@ W5200Class::W5200Class(SPIClass &spi, uint8_t sspin){
 // Chip dependant
 uint8_t W5200Class::init(void)
 {
-	if (initialized) return 1;
+	if (_initialized) return 1;
 
 	CH_BASE_MSB = 0x40;
 	uint8_t i;
@@ -87,7 +87,7 @@ uint8_t W5200Class::init(void)
 		return 0; // no known chip is responding :-(
 	}
 	spi->endTransaction();
-	initialized = true;
+	_initialized = true;
 	//Serial.println("w5100 Initialized");
 	return 1; // successful init
 }

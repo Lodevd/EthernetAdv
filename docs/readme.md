@@ -12,5 +12,5 @@ To use this library
 
 ```
 #include <SPI.h>
-#include <Ethernet.h>
+#include <EthernetAdv.h>
 ```
